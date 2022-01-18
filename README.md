@@ -2,11 +2,11 @@
 Make sure that you can’t add a blank todo
 Clear the input after adding a todo
 Investigate why deleting a todo is broken
+Investigate why the done todos aren’t blue
 Accessibility: Make the todo label associated with the checkbox 
 
-**Stretch goals:**
+**Stretch goal:**
 Todos have a unique, constant ID number
-Investigate why the done todos aren’t blue
 
 
 
