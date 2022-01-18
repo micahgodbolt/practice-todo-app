@@ -1,6 +1,18 @@
+**Tasks:**
+Make sure that you can’t add a blank todo
+Clear the input after adding a todo
+Investigate why deleting a todo is broken
+Accessibility: Make the todo label associated with the checkbox 
+
+**Stretch goals:**
+Todos have a unique, constant ID number
+Investigate why the done todos aren’t blue
+
+
+
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https:ithub.com/facebook/create-react-app).
 
 ## Available Scripts
 
