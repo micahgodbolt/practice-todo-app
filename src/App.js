@@ -45,7 +45,7 @@ export const TodoApp = (props) => {
     <div>
       <input ref={inputRef} placeholder={"Insert Text"} />
       <button onClick={addNewItem}>Add Item</button>
-      {!items && <h2>You have an empty list! Add something</h2>}
+      {items.length === 0 && <h2>You have an empty list! Add something</h2>}
       <ol>
         {items.map((item, i) => (
           <ListItem
