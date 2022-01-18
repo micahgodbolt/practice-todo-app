@@ -14,25 +14,29 @@ import './App.css';
 export const TodoApp = (props) => {
   const inputRef = React.useRef(null);
   const [items, setItems] = React.useState([
-    { text: "Learn JavaScript", done: true },
-    { text: "Learn React", done: true },
-    { text: "Play around in JSFiddle" },
-    { text: "Build something awesome" },
+    { id: 0, text: "Learn JavaScript", done: true },
+    { id: 1, text: "Learn React", done: true },
+    { id: 2, text: "Play around in JSFiddle" },
+    { id: 3, text: "Build something awesome" },
   ]);
+  const [nextId, setNextId] = React.useState(4)
 
   const addNewItem = (ev) => {
     const input = inputRef.current;
-    setItems([...items, { text: input.value }]);
+    if (input.value === '') return;
+    setItems([...items, {id: nextId, text: input.value }]);
+    setNextId(nextId + 1);
+    input.value = '';
   }
 
   const removeItem = (indexToRemove) => {
-    const newItems = items.filter((item, i) => i === indexToRemove);
+    const newItems = items.filter((item, i) => item.id !== indexToRemove);
     setItems(newItems);
   }
 
   const toggleItem = (indexToToggle) => {
   	const newItems = items.map((item, i) => {
-    	return (i !== indexToToggle) ? item : {...item, done: !item.done}
+    	return (item.id !== indexToToggle) ? item : {...item, done: !item.done}
     })
    	setItems(newItems);
   }
@@ -45,8 +49,8 @@ export const TodoApp = (props) => {
       <ol>
         {items.map((item, i) => (
           <ListItem
-            key={i}
-            id={i}
+            key={item.id}
+            id={item.id}
             text={item.text}
             done={item.done}
             removeItem={removeItem}
@@ -74,12 +78,14 @@ const ListItem = (props) => {
     marginBottom: 6
   };
 
+  const itemId = 'item' + props.id;
+
   return (
     <li className={props.done ? "done" : ""} style={style}>
       <span>{props.id +1 }</span>
-      <button onClick={handleRemove}>X</button>
-      <label> {props.text}</label>
-      <input type="checkbox" checked={props.done ? true : false} onChange={handleSelect} />
+      <button aria-label={`Delete todo ${props.text}`} onClick={handleRemove}>X</button>
+      <label htmlFor={itemId} > {props.text}</label>
+      <input id={ itemId } type="checkbox" checked={props.done ? true : false} onChange={handleSelect} />
     </li>
   );
 }
