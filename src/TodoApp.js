@@ -1,32 +1,27 @@
-
 import * as React from "react";
-import { ListItem } from './ListItem';
+import "./TodoApp.css";
+import { defaultData } from "./defaultData";
 
 export const TodoApp = (props) => {
   const inputRef = React.useRef(null);
-  const [items, setItems] = React.useState([
-    { text: "Learn JavaScript", done: true },
-    { text: "Learn React", done: true },
-    { text: "Play around in JSFiddle" },
-    { text: "Build something awesome" },
-  ]);
+  const [items, setItems] = React.useState(defaultData);
 
-  const addNewItem = (ev) => {
+  const addNewItem = () => {
     const input = inputRef.current;
     setItems([...items, { text: input.value }]);
-  }
+  };
 
   const removeItem = (indexToRemove) => {
     const newItems = items.filter((item, i) => i === indexToRemove);
     setItems(newItems);
-  }
+  };
 
   const toggleItem = (indexToToggle) => {
     const newItems = items.map((item, i) => {
-      return (i !== indexToToggle) ? item : { ...item, done: !item.done }
-    })
+      return i !== indexToToggle ? item : { ...item, done: !item.done };
+    });
     setItems(newItems);
-  }
+  };
 
   return (
     <div>
@@ -46,5 +41,27 @@ export const TodoApp = (props) => {
         ))}
       </ol>
     </div>
-  )
-}
+  );
+};
+
+const ListItem = (props) => {
+  const handleSelect = () => props.toggleItem(props.id);
+
+  return (
+    <li className={props.done ? "item" : "item done"}>
+      <span>{props.id + 1}</span>
+      <button
+        type="button"
+        aria-label={`Delete to do ${props.text}`}
+        onPress={props.removeItem}>
+        X
+      </button>
+      <label> {props.text}</label>
+      <input
+        type="checkbox"
+        checked={props.done ? true : false}
+        onChange={handleSelect}
+      />
+    </li>
+  );
+};

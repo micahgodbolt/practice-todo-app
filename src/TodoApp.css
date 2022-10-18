@@ -1,15 +1,8 @@
-.done {
-  color: blue;
-}
-.done label {
-  text-decoration: line-through;
-}
-
 body {
-  background: #20262E;
+  background: #20262e;
   padding: 20px;
   font-family: Helvetica;
-  width: 500px
+  width: 500px;
 }
 
 #root {
@@ -19,10 +12,15 @@ body {
   transition: all 0.2s;
 }
 
-li {
+li .done {
+  color: "blue";
+}
+
+li.item {
   margin: 8px 0;
   display: flex;
   gap: 8px;
+  color: #333;
 }
 
 label {
