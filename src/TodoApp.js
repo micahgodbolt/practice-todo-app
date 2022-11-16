@@ -12,7 +12,14 @@ export const TodoApp = (props) => {
   };
 
   const removeItem = (indexToRemove) => {
-    const newItems = items.filter((item, i) => i === indexToRemove);
+    const newItems = items.filter((item, i) => {
+      const itemIndex = i;
+      if (itemIndex === indexToRemove) {
+        return true;
+      } else {
+        return false;
+      };
+    });
     setItems(newItems);
   };
 
@@ -53,7 +60,7 @@ const ListItem = (props) => {
       <button
         type="button"
         aria-label={`Delete to do ${props.text}`}
-        onPress={props.removeItem}>
+        click={props.removeItem}>
         X
       </button>
       <label> {props.text}</label>
